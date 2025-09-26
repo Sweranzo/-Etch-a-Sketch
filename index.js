@@ -1,66 +1,61 @@
 let container = document.querySelector('#container');
 let button = document.querySelector('.number-button');
+let defaultGrid = createBoxes(16); 
+let inputBox = document.querySelector('#input-grid');
+let submit = document.querySelector('.button-submit');
+let color = document.querySelector('#color-picker');
+let reset =document.querySelector('.reset');
 
 
-/* for (let i = 1; i <= 256; i++) {
-    
-    const box = document.createElement('div');
-    box.classList.add('box');
-    box.textContent = i;
-    container.appendChild(box);
-    box.addEventListener('mousemove', ()=>{
-    box.style.backgroundColor = 'yellow';
-    })
-  } */
-/* button.addEventListener('click', ()=>{
-  let numberOfBoxes = prompt('Enter the box number per-side:');
-  for (let i = 1; i <= numberOfBoxes; i++) {
-  let newGrid = document.createElement('div');
-  newGrid.classList.add('new-grid');
-  container.innerHTML='';
-  }
-});  */
+button.addEventListener('click', ()=>{
+container.innerHTML ='';
+
+let newGrid = createBoxes(prompt('Enter your desire side boxes numbers:')); 
+})
+
+reset.addEventListener('click', () => {
+  
+  
+  container.innerHTML = '';
+  createBoxes(16); 
+})
+
+submit.addEventListener('click', ()=>{
+  container.innerHTML ='';
+  createBoxes(inputBox.value);
+});
+
+
 
 function createBoxes (number) {
 
  for (let i = 1; i <= number*number; i++) {
+    if (number > 100)  { 
+  alert('the maximum is only 100!');
+  container.innerHTML ='';
+  createBoxes(16); 
+  break;}
     
     const box = document.createElement('div');
     box.classList.add('box');
     box.style.flex = `0 0 calc(100% / ${number})`;
     container.appendChild(box);
-    box.addEventListener('mouseenter', ()=>{
+    box.addEventListener('mouseover', ()=>{ 
      let randomColor = Math.round(Math.random() * 10);
       if (randomColor <= 3.3) {
-      randomColor =  `rgba(255, 0, 0, ${incrementColor(0.027)})`;
+      randomColor =  `red`;
       }else if(randomColor > 3.3 && randomColor <= 6.6) {
-      randomColor = `rgba(0, 128, 0, ${incrementColor(0.027)})`;
+      randomColor = `green`;
       }else {
-      randomColor= `rgba(0, 0, 255, ${incrementColor(0.082)})`;
-
+      randomColor= `blue`;
       }
-      box.style.backgroundColor = randomColor;
-      
-      
-    })
-  } return number;
+      box.style.backgroundColor = color.value;
+    }) 
+  }
+  
+return number;
 }
 
-let defaultGrid = createBoxes(16); 
 
-button.addEventListener('click', ()=>{
-container.innerHTML ='';
-let newGrid = createBoxes(prompt('Enter your desire side boxes numbers:')); 
 
-if (newGrid > 100) {
-  alert('the maximum is only 100!')
-  container.innerHTML ='';
-  createBoxes(16);
-}
 
-})
-
-function incrementColor (number) {
-  if (number < 1) { number += 0.1}
-  return number;
-}

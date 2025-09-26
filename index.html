@@ -8,12 +8,22 @@
   <script src="index.js" defer></script>
 </head>
 <body>
-    <div class="button">
-    <button class="number-button">number per-side</button>
-    </div>
-    <div class="container-body">
-    <div id="container">
-    </div>
+    <div class="main-container">
+      <div class="nav">
+        <label for="input-grid">Enter Grid Number:  </label>
+        <input type="number" id="input-grid" placeholder="maximum is 100" >
+        <button class="button-submit" ><u>Submit</u></button>
+        <button class="reset">⟳</button>
+        <div class="button">
+          <button class="number-button">number per-side</button>
+        </div>
+        <input type="color" id="color-picker">
+      </div>
+      <div class="container-body">
+        <div id="container">
+        </div>
+        </div>
+      <p class="mock-up-footer">@TheOdinProject</p>
     </div>
 </body>
 </html>
